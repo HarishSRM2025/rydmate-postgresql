@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const tripController = require("../controllers/tripController");
-const Auth = require("../middleware/Auth");
+const Auth = require("../middleware/auth");
 // USER Creates Trip
 router.post("/create", Auth, tripController.createTrip);
 
