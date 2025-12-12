@@ -64,6 +64,10 @@ const Trip = sequelize.define("Trip", {
         defaultValue:"auto",
         allowNull:true
     },
+    otp:{
+        type: DataTypes.STRING,
+        allowNull: true
+    },
     status: {
         type: DataTypes.ENUM("pending", "accepted", "on-trip", "completed", "cancelled"),
         defaultValue: "pending"

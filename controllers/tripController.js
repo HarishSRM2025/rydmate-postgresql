@@ -2,15 +2,16 @@ const Trip = require("../models/Trip");
 
 exports.createTrip = async (req, res) => {
     try {
-        const fareAmount = 100
         const {
             trip_type,
             pickup_location,
             drop_location,
             pickup_date,
             pickup_time,
+            fare,
             return_date,
             return_time,
+            otp,
             vehicle
         } = req.body;
 
@@ -28,9 +29,10 @@ exports.createTrip = async (req, res) => {
             drop_location,
             pickup_date,
             pickup_time,
-            fare:fareAmount,
+            fare,
             return_date: trip_type === "round" ? return_date : null,
             return_time: trip_type === "round" ? return_time : null,
+            otp,
             vehicle
         });
 
