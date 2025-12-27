@@ -79,6 +79,29 @@ exports.assignDriver = async (req, res) => {
     }
 };
 
+
+// Trip Started
+
+exports.startTrip = async (req, res) => {
+    try {
+        const { tripId } = req.params;
+
+        const trip = await Trip.findByPk(tripId);
+        if (!trip) return res.status(404).json({ error: "Trip not found" });
+
+        if(trip.otp = req.body.otp){
+            trip.status = "on-trip";
+            await trip.save();
+            res.status(200).json({ message: "Trip Started", trip });
+        }
+        else{
+            res.status(200).json({ message: "OTP Wrong", trip });
+        }
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
 // Update trip status (on-trip, completed, cancelled)
 exports.updateStatus = async (req, res) => {
     try {
