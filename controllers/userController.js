@@ -10,7 +10,7 @@ exports.userSignup = async (req, res) => {
 
         const hashed = await bcrypt.hash(password, 10);
 
-        await User.create({ name, email,phone, password: hashed, role: "customer" });
+        await User.create({ name, email,phone, password: hashed});
 
         res.json({ message: "Customer registered" });
     } catch (err) {
@@ -22,7 +22,7 @@ exports.userSignin = async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        const user = await User.findOne({ where: { email, role: "customer" } });
+        const user = await User.findOne({ where: {email} });
 
         if (!user) return res.status(400).json({ message: "Customer not found" });
 
@@ -30,7 +30,7 @@ exports.userSignin = async (req, res) => {
 
         if (!valid) return res.status(400).json({ message: "Incorrect password" });
 
-        const token = jwt.sign({ id: user.id, role: user.role }, JWT_SECRET);
+        const token = jwt.sign({ id: user.id, role: user.email }, JWT_SECRET);
 
         res.json({ message: "Login success", token, user });
     } catch (err) {

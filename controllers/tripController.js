@@ -7,10 +7,13 @@ exports.createTrip = async (req, res) => {
             pickup_location,
             drop_location,
             pickup_date,
+            pickup_latitude,
+            pickup_longitude,            
             pickup_time,
             fare,
             return_date,
             return_time,
+            distance,
             otp,
             vehicle
         } = req.body;
@@ -26,6 +29,8 @@ exports.createTrip = async (req, res) => {
             userId: req.user.id,
             trip_type,
             pickup_location,
+            pickup_latitude,
+            pickup_longitude,   
             drop_location,
             pickup_date,
             pickup_time,
@@ -33,6 +38,7 @@ exports.createTrip = async (req, res) => {
             return_date: trip_type === "round" ? return_date : null,
             return_time: trip_type === "round" ? return_time : null,
             otp,
+            distance,
             vehicle
         });
 

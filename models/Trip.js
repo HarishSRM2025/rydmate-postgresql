@@ -28,7 +28,14 @@ const Trip = sequelize.define("Trip", {
         type: DataTypes.STRING,
         allowNull: false
     },
-
+    pickup_latitude: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    pickup_longitude: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
     drop_location: {
         type: DataTypes.STRING,
         allowNull: false
@@ -63,6 +70,10 @@ const Trip = sequelize.define("Trip", {
         type:DataTypes.ENUM("auto", "car", "bike"),
         defaultValue:"auto",
         allowNull:true
+    },
+    distance:{
+        type: DataTypes.FLOAT,
+        allowNull: true
     },
     otp:{
         type: DataTypes.STRING,
